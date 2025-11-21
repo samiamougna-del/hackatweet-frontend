@@ -4,7 +4,6 @@ import Trends from '../components/Trends';
 
 
 function Hashtag () {
-    
   const [trends, setTrends] = useState ([
      { name: "#hackatweet", count: 2 },
     { name: "#first", count: 1 },
