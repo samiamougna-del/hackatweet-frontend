@@ -1,20 +1,26 @@
 
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
-import Trends from './Trends';
+import Trends from '../components/Trends';
 
 function Home() {
-  const [Trends, setTrends] = useState ('');
+  const [trends, setTrends] = useState ([
+     { name: "#hackatweet", count: 2 },
+    { name: "#first", count: 1 },
+  ]);
 
-  const selectTrends = () => {
+  const selectTrends = (title) => {
     console.log ('CLICK', title);
     setTrends(title);
-
   }
+
+
+
   return (
     <div className={styles.container}>
 
       {/* --- LEFT SIDEBAR --- */}
+   
       <aside className={styles.sidebarLeft}>
         <img src="/logo.svg" alt="Logo" className={styles.logo} />
 
@@ -26,7 +32,7 @@ function Home() {
               <div className={styles.handle}>@JohnCena</div>
             </div>
           </div>
-
+ 
           <button className={styles.logoutButton}>Logout</button>
         </div>
       </aside>
@@ -53,7 +59,7 @@ function Home() {
             </div>
           </div>
 
-          
+    
 
           <p className={styles.tweetContent}>
             Welcome to <b>#hackatweet</b> guys 😎
@@ -63,7 +69,7 @@ function Home() {
         </div>
 
       </main>
-
+        <Trends trends={trends} />
     </div>
   );
 }
