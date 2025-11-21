@@ -9,14 +9,14 @@ function Login() {
   return (
     <div>
         
-      <h1>SEE WHAT'S HAPPENING TODAY</h1>
+       <h1>SEE WHAT'S HAPPENING TODAY</h1>
       <h2>Join Hackatweet today... MWAHAHAHA</h2>
       <button onClick={() => setShowSignUp(true)}>Sign up</button>
+      {showSignUp && <SignUp onClose={() => setShowSignUp(false)} />}
       <h3>already have an account ?</h3>
       <button onClick={() => setShowSignIn(true)}>Sign in</button>
-
-      {showSignUp && <SignUp />}
-      {showSignIn && <SignIn />}
+      {showSignIn && <SignIn onClose={() => setShowSignIn(false)} />}
+      
     </div>
   );
 }

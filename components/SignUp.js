@@ -1,9 +1,12 @@
 import { login } from '../reducers/user'
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-//import styles from '../styles/Header.module.css';
+import { Modal } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-function SignUp() {
+
+function SignUp({onClose}) {
         const dispatch = useDispatch()
 
         const [signUpUsername, setSignUpUsername] = useState('');
@@ -24,19 +27,24 @@ function SignUp() {
                     setSignUpFirstname('');
 					setSignUpUsername('');
 					setSignUpPassword('');
+    
 				}
 			});
 	};
 
             return (
-                    // <div className={styles.registerSection}>
-                    <div>
-					<p>Sign-up</p>
+                     <Modal 
+                     open={true} 
+                     onCancel={onClose}
+                     footer={null}
+                     closeIcon={<FontAwesomeIcon icon={faXmark} />}
+                     >              
+					<p>Create your Hackatweet account</p> 
                     <input type="text" placeholder="Firstname" id="signUpFirstname" onChange={(e) => setSignUpFirstname(e.target.value)} value={signUpFirstname} />
 					<input type="text" placeholder="Username" id="signUpUsername" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
 					<input type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
-					<button id="register" onClick={() => handleRegister()}>Register</button>
-				</div>
+					<button id="register" onClick={() => handleRegister()}>Sign up</button>
+				     </Modal>   
 
                 )
  
