@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css';
-import Home from './Trends';
+import Link from 'next/link';
 
 function Trends() {
   return (
@@ -9,12 +9,18 @@ function Trends() {
         <h2 className={styles.trendsTitle}>Trends</h2>
 
         <div className={styles.trendItem}>
-          <div className={styles.trendName}>#hackatweet</div>
+           <Link href="/hashtag/hackatweet">
+  <a className={styles.trendLink}>#hackatweet</a>
+</Link>
           <div className={styles.trendCount}>2 Tweets</div>
         </div>
 
         <div className={styles.trendItem}>
-          <div className={styles.trendName}>#first</div>
+            <Link href="/hashtag/hackatweet">
+  <a className={styles.trendLink}>#first</a>
+</Link>
+
+
           <div className={styles.trendCount}>1 Tweet</div>
         </div>
       </div>

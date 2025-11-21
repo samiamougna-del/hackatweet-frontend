@@ -1,24 +1,29 @@
-
-import { useState } from 'react';
-import styles from '../styles/Home.module.css';
-import Trends from '../components/Trends';
+import { useRouter } from "next/router";
+import styles from '../../styles/Home.module.css';
+import Trends from '../../components/Trends';
 import Link from 'next/link';
-
-function Home() {
-  const [trends, setTrends] = useState ([
-     { name: "#hackatweet", count: 2 },
-    { name: "#first", count: 1 },
-  ]);
-
-  const selectTrends = (title) => {
-    console.log ('CLICK', title);
-    setTrends(title);
-  }
+import { useState } from 'react';
 
 
+
+function HashtagPage() {
+      const [trends, setTrends] = useState ([
+         { name: "#hackatweet", count: 2 },
+        { name: "#first", count: 1 },
+      ]);
+    
+      const selectTrends = (title) => {
+        console.log ('CLICK', title);
+        setTrends(title);
+      }
+    
+    
+  const router = useRouter();
+  const { tag } = router.query;
 
   return (
-    <div className={styles.container}>
+
+ <div className={styles.container}>
 
       {/* --- LEFT SIDEBAR --- */}
    
@@ -68,9 +73,9 @@ function Home() {
     
 <p className={styles.tweetContent}>
   Welcome to{" "}
-  <Link href="/hashtag/hackatweet">
-    <a className={styles.hashtagLink}>#hackatweet</a>
-  </Link>{" "}
+ <Link href={`/hashtag/${tag}`}>
+  <a className={styles.hashtagLink}>{tag}</a>
+</Link>
   guys 😎
 </p>
           
@@ -83,4 +88,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HashtagPage ;

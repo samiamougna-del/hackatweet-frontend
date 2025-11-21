@@ -168,3 +168,20 @@
   font-size: 12px;
   color: #aaa;
 }
+
+.trendLink {
+  color: white;          /* lien blanc */
+  text-decoration: none; /* pas de soulignement */
+  cursor: pointer;       /* curseur normal de lien */
+}
+
+.hashtagLink {
+  color: #1d9bf0;         /* bleu Twitter */
+  text-decoration: none;  /* pas de souligné */
+  font-weight: bold;      /* optionnel, comme Twitter */
+  cursor: pointer;
+}
+
+.hashtagLink:hover {
+  opacity: 0.8;           /* petit effet au hover */
+}
