@@ -8,23 +8,3 @@ body {
 * {
   box-sizing: border-box;
 }
-
-
-/* Supprime fond blanc et ombre de la modale Ant Design */
-:global(.ant-modal) {
-  background: #0d1117 !important;  /* fond bleu foncé */
-  border-radius: 15px !important;
-  box-shadow: none !important;      /* supprime l’ombre blanche */
-}
-
-/* Supprime fond du wrapper de la modale */
-:global(.ant-modal-content) {
-  background: #0d1117 !important;
-  border-radius: 15px !important;
-  padding: 60px 40px !important;    /* espace interne */
-}
-
-/* Masque derrière la modale */
-:global(.ant-modal-mask) {
-  background-color: rgba(0,0,0,0.5) !important;
-}

@@ -1,10 +1,11 @@
 import { login } from '../reducers/user';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { Modal } from 'antd';
+import { Modal, ConfigProvider } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
+
 
 function SignUp({ onClose }) {
   const dispatch = useDispatch();
@@ -47,25 +48,37 @@ function SignUp({ onClose }) {
   };
 
   return (
+    <ConfigProvider theme={{
+components: {
+Modal: {
+contentBg: '#0d1117',
+headerBg: "white",
+titleColor: "white",
+},
+},
+}}>
+
     <Modal
       open={true}
       onCancel={onClose}
       footer={null}
       closeIcon={<FontAwesomeIcon icon={faXmark} />}
          centered  // centre verticalement
+         
   maskStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} 
   bodyStyle={{ 
     backgroundColor: '#0d1117',  
-    color: 'white',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: '60px 40px', 
     borderRadius: '15px', 
   }}
-  style={{ border: 'none' }} 
+  style={{ border: 'none', backgroundColor:'#0d1117'}} 
+
       
     >
+        
       <p>Create your Hackatweet account</p>
 
       <input
@@ -88,7 +101,9 @@ function SignUp({ onClose }) {
       />
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button onClick={handleRegister}>Sign up</button>
-    </Modal>
+    </Modal>     
+    </ConfigProvider> // Configurer la Modal
+
   );
 }
 

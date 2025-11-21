@@ -8,7 +8,7 @@
 /* Partie gauche avec image de fond */
 .left {
   flex: 1;
-  background-image: url('/logo.png'); /* ou une autre image de fond */
+  background-image: url('/logo.png'); 
   background-size: cover;
   background-color: #0d95e8;
   background-position: center;
@@ -72,4 +72,9 @@
   margin-bottom: 20px;
   width: 60px;
   height: 60px;
+}
+
+.p 
+{
+  color: white;   
 }
