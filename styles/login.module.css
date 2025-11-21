@@ -22,10 +22,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #0d1117; /* bleu très foncé / presque noir */
+  background-color: #0d1117; 
   padding: 50px;
   text-align: center;
-  color: white; /* texte en blanc */
+  color: white; 
 }
 
 /* Titres et textes */
@@ -52,7 +52,7 @@
 
 /* Boutons */
 .button {
-  background-color: #1da1f2; /* bleu Twitter */
+  background-color: #1da1f2; 
   color: white;
   border: none;
   padding: 10px 25px;
