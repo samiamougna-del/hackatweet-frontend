@@ -4,51 +4,41 @@ import Trends from '../../components/Trends';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTweet } from '../../reducers/tweet';
+import { addTweet, updateTrends } from '../../reducers/tweet';
 
 function HashtagPage() {
   const router = useRouter();
   const { tag } = router.query;
-
   const dispatch = useDispatch();
   const allTweets = useSelector((state) => state.tweet.tweets);
-
+  const trends = useSelector((state) => state.tweet.trends);
   const [tweets, setTweets] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [trends, setTrends] = useState([]);
 
   useEffect(() => {
-    if (!tag) return;
-
+    if (!tag || !allTweets) return;
     const filtered = allTweets.filter((t) =>
       t.text.toLowerCase().includes(`#${tag.toLowerCase()}`)
     );
-
     setTweets(filtered);
   }, [tag, allTweets]);
 
   const handleTweet = () => {
     if (!inputValue) return;
-
+    
     const newTweet = {
       _id: Date.now(),
       text: inputValue,
       likes: [],
     };
-
+    
     dispatch(addTweet(newTweet));
-
+    
     const hashtags = inputValue.match(/#[\w]+/g);
     if (hashtags) {
-      const newTrends = [...trends];
-      hashtags.forEach((h) => {
-        const index = newTrends.findIndex((t) => t.name.toLowerCase() === h.toLowerCase());
-        if (index !== -1) newTrends[index].count += 1;
-        else newTrends.push({ name: h, count: 1 });
-      });
-      setTrends(newTrends);
+      dispatch(updateTrends(hashtags));
     }
-
+    
     setInputValue("");
   };
 
@@ -74,7 +64,6 @@ function HashtagPage() {
       {/* --- FEED CENTER --- */}
       <main className={styles.feed}>
         <h1 className={styles.title}>#{tag}</h1>
-
         <input
           type="text"
           placeholder="What's up?"
@@ -96,7 +85,6 @@ function HashtagPage() {
                 <span className={styles.handle}> @user{index + 1} · Just now</span>
               </div>
             </div>
-
             <p className={styles.tweetContent}>
               {tweet.text.split(" ").map((word, i) =>
                 word.startsWith("#") ? (
@@ -108,7 +96,6 @@ function HashtagPage() {
                 )
               )}
             </p>
-
             <div className={styles.tweetActions}>♡ {tweet.likes.length}</div>
           </div>
         ))}
