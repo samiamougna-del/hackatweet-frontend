@@ -2,6 +2,21 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 
 function Trends({ trends }) {
+
+  // LOG OUT 
+
+const handleLogout = () => {
+  // Si tu utilises un token
+  localStorage.removeItem("token");
+
+  // Si tu veux vider l'utilisateur dans Redux :
+  // dispatch(logout());
+
+  // Redirection vers la page login
+  router.push("/login");
+};
+
+
   return (
     <aside className={styles.sidebarRight}>
       <div className={styles.trendsCard}>

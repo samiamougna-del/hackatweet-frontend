@@ -1,6 +1,8 @@
 import styles from '../styles/Home.module.css';
 import Home from '../components/Home';
 import Trends from '../components/Trends';
+import { Popover, Button } from 'antd';
+
 
 
 function Hashtag () {
@@ -14,7 +16,36 @@ function Hashtag () {
     setTrends(title);
   }
 
+  // LOG OUT 
+const handleLogout = () => {
+  // Si tu utilises un token
+  localStorage.removeItem("token");
 
+  // Si tu veux vider l'utilisateur dans Redux :
+  // dispatch(logout());
+
+  // Redirection vers la page login
+  router.push("/login");
+};
+
+
+
+// Nouvelle fonction pour rechercher un hashtag
+  const handleSearch = () => {
+    if (!inputValue.startsWith("#")) return; // on ne cherche que les hashtags
+    const searchTag = inputValue.replace("#", "").toLowerCase();
+
+    // Filtrer les tweets qui contiennent ce hashtag
+    const filtered = allTweets.filter((t) =>
+      t.text.toLowerCase().includes(`#${searchTag}`)
+    );
+    setTweets(filtered);
+
+    // Optionnel : naviguer vers la page du hashtag
+    router.push(`/hashtag/${searchTag}`);
+  };
+
+  const popoverContent = <div className={styles.popoverContent}>{tweetInput}</div>;
 
   return (
     <div className={styles.container}>
@@ -43,9 +74,21 @@ function Hashtag () {
 
         <input 
           type="text"
-          placeholder="What's up?"
+          placeholder="Search"
           className={styles.tweetInput}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
+        <Popover
+         content={popoverContent}
+          className={styles.popover}
+          trigger="click"
+          > 
+         <button className={styles.tweetButton} onClick={handleSearch}>
+          Search
+        </button>
+        </Popover>
+
         <div className={styles.charCount}>0/280</div>
         <button className={styles.tweetButton}>Tweet</button>
 
