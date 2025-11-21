@@ -11,7 +11,7 @@ function HashtagPage() {
   const { tag } = router.query;
 
   const dispatch = useDispatch();
-  const allTweets = useSelector((state) => state.tweet.tweet);
+  const allTweets = useSelector((state) => state.tweet.tweets);
 
   const [tweets, setTweets] = useState([]);
   const [inputValue, setInputValue] = useState("");
